@@ -19,7 +19,7 @@ namespace Part_5_Assignment_PHILIP_GRAHAM
 
 
             //Hurricane();
-          
+
 
 
 
@@ -27,12 +27,47 @@ namespace Part_5_Assignment_PHILIP_GRAHAM
 
 
             /// Dice Game
-            int bankAccount = 100;
+            Random generator = new Random();
+            double bankAccount = 100;
+            int die1 = generator.Next(1, 2);
+            int die2 = generator.Next(1, 2);
 
-
+            Console.WriteLine("Welcome to the dice game, you will be able to bet on one of four possibilities with your choose of how much you want to bet");
             Console.WriteLine("Please enter what outcome you want to bet on (Doubles enter 1 to win 2x your bet) (Not doubles enter 2 to win 1.5x your bet) (Even Sum enter 3 win your bet) (Odd Sum enter 4 win your bet )");
             int betRoll = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Please enter the amount you want to bet");
+            Console.WriteLine("Please enter the amount you want to bet (Maximum 100$)");
+            double betAmount = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"The first die rolled was {die1}, the second was {die2}");
+            if ((die1) == (die2) && (betRoll) == 1)
+            {
+                bankAccount = ((bankAccount) + (betAmount * 2));
+                Console.WriteLine($"You have {bankAccount} dollars");
+            }
+            else if (die1 != die2 && betRoll == 1)
+            {
+                bankAccount = (bankAccount - betAmount);
+                Console.WriteLine($"You have {bankAccount} dollars");
+            }
+            else if (die1 != die2 && betRoll == 2)
+            {
+                bankAccount = ((bankAccount) + (betAmount * 1.5));
+                Console.WriteLine($"You have {bankAccount}");
+
+
+            }
+            else if (die1 == die2 && betRoll == 2)
+            {
+                bankAccount = ((bankAccount) + (bankAccount - betAmount));
+                Console.WriteLine($"You have {bankAccount} dollars");
+
+            }
+           
+
+
+
+
+
+
 
 
 
