@@ -10,7 +10,7 @@ namespace Part_5_Assignment_PHILIP_GRAHAM
     {
         static void Main(string[] args)
         {
-            //stages();
+            stages();
 
 
 
@@ -18,7 +18,7 @@ namespace Part_5_Assignment_PHILIP_GRAHAM
 
 
 
-            //Hurricane();
+            Hurricane();
 
 
 
@@ -29,14 +29,18 @@ namespace Part_5_Assignment_PHILIP_GRAHAM
             /// Dice Game
             Random generator = new Random();
             double bankAccount = 100;
-            int die1 = generator.Next(1, 2);
-            int die2 = generator.Next(1, 2);
+            int die1 = generator.Next(1, 7);
+            int die2 = generator.Next(1, 7);
 
             Console.WriteLine("Welcome to the dice game, you will be able to bet on one of four possibilities with your choose of how much you want to bet");
-            Console.WriteLine("Please enter what outcome you want to bet on (Doubles enter 1 to win 2x your bet) (Not doubles enter 2 to win 1.5x your bet) (Even Sum enter 3 win your bet) (Odd Sum enter 4 win your bet )");
-            int betRoll = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Please enter what outcome you want to bet on (Doubles ENTER 1 to win 2x your bet) (Not doubles ENTER 2 to win 1.5x your bet) (Even Sum ENTER 3 win your bet) (Odd Sum ENTER 4 win your bet )");
+            int betRoll;
+            while (!Int32.TryParse(Console.ReadLine(), out betRoll))
+                Console.WriteLine("Invalid Input");
             Console.WriteLine("Please enter the amount you want to bet (Maximum 100$)");
-            double betAmount = Convert.ToInt32(Console.ReadLine());
+            double betAmount;
+            while (!double.TryParse(Console.ReadLine(), out betAmount))
+                Console.WriteLine("Invalid Input");
             Console.WriteLine($"The first die rolled was {die1}, the second was {die2}");
             if ((die1) == (die2) && (betRoll) == 1)
             {
@@ -61,9 +65,31 @@ namespace Part_5_Assignment_PHILIP_GRAHAM
                 Console.WriteLine($"You have {bankAccount} dollars");
 
             }
-           
+           else if ((die1 + die2 == 2 || die1 + die2 == 4 || die1 + die2 == 6|| die1 + die2 == 8 || die1 + die2 == 10|| die1 + die2 == 12)  && betRoll == 3)
+            {
+                bankAccount = (bankAccount + betAmount);
+                Console.WriteLine($"You have {bankAccount} dollars");
 
+            }    
+            else if ((die1 + die2 != 2 || die1 +die2 != 4 || die1 + die2 != 6 || die1 + die2  != 8|| die1 + die2 != 10 || die1 + die2 != 12) && betRoll == 3 )
+            {
+                bankAccount = bankAccount - betAmount;
+                Console.WriteLine($"You have {bankAccount} dollars");
 
+            }
+            else if ((die1 + die2 == 3 || die1 + die2 == 5 || die1 + die2 == 7 || die1 + die2 == 9 || die1 + die2 == 11) && betRoll == 4 )
+            {
+                bankAccount = (bankAccount + betAmount);
+                Console.WriteLine($"You have {bankAccount} dollars");
+
+            }
+
+            else if ((die1 + die2 != 3 || die1 + die2 != 5 || die1 + die2 != 7 || die1 + die2 != 9 || die1 + die2 != 11) && betRoll == 4 )
+            {
+                bankAccount = (bankAccount + betAmount);
+                Console.WriteLine($"You have {bankAccount} dollars");
+
+            }
 
 
 
@@ -107,7 +133,10 @@ namespace Part_5_Assignment_PHILIP_GRAHAM
         public static void stages()
         {
             Console.WriteLine("Please enter your age");
-            int age = Convert.ToInt32(Console.ReadLine());
+            int age;
+            while (!Int32.TryParse(Console.ReadLine(), out age))
+                Console.WriteLine("Invalid Input");
+
             if (age > 18)
                 Console.WriteLine("Adult");
 
@@ -129,7 +158,11 @@ namespace Part_5_Assignment_PHILIP_GRAHAM
         public static void Hurricane()
         {
             Console.WriteLine("Pleaase Enter a Hurricane Category (1-5)");
-            int category = Convert.ToInt32(Console.ReadLine());
+            int category;
+            while (!Int32.TryParse(Console.ReadLine(), out category))
+                Console.WriteLine("Invalid Input");
+
+
             switch (category)
             {
                 case 1:
